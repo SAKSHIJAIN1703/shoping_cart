@@ -1,23 +1,55 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+
+import './App.css';
+import Banner  from './component/Banner';
+import { useState } from 'react';
+import React from 'react';
+import loginImg from './img/kitchen.png'
+
+// import {Redirect} from 'react-router-dom';
+
+
+
+function App({ history }) {
+//   const fname=sakshi;
+// const lname =jain;
+const [name,setName]=useState("");
+const [fname,setFname]=useState("");
+
+
+const inputEvent=(event)=>{
+  setName(event.target.value)
+}
+const submit=()=>{
+  setFname(name);
+  setName("");
+}
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App " >
+    
+<div>
+{/* <h1 >hello my name is {fname} </h1> */}
+
+{
+fname==0?
+<div className='inputField d-flex align-items-center'>
+  <div className='box  d-flex justify-content-center align-items-center mx-auto'>
+  <div className='box-img'>
+    <img className='w-100' src={loginImg}/>
+    </div>
+    <div className='box-input py-3 d-flex justify-content-center align-items-center gap-3 '>
+  <h5 className='text-black text-capitalize mb-0 ' >enter name here</h5>
+  <input type="text"  onChange={inputEvent} value={name} className='input-box border-radius-8 px-2'/>
+  <button className='submit-btn w-75 border-radius-8' onClick={submit}>submit</button>
+</div>
+</div>
+</div>:<><Banner value={fname} />
+
+</>
+  }
+
+</div>
     </div>
   );
 }
